@@ -8,6 +8,10 @@
 	$secret = '6171690af7364ea2a951dc85d00e1130';
 
 	$b = new Client ($key, $secret);
-	var_dump ($b->getOrderHistory ());
+	$result = array();
+	//var_dump ($b->buyLimit ('BTC-DAR', 10.9, 0.00005488));
+        var_export ($b->getMarketSummary ('BTC-DAR'));
+        $result = $b->getMarketSummary('BTC-DAR');
+        $ask = $result[0]->Ask;
 	
 	echo "\n\n";
