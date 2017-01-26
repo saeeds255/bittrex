@@ -9,9 +9,24 @@
 
 	$b = new Client ($key, $secret);
 	$result = array();
+	$markets = array();
+	$marketsummary = array();
 	//var_dump ($b->buyLimit ('BTC-DAR', 10.9, 0.00005488));
-        var_export ($b->getMarketSummary ('BTC-DAR'));
-        $result = $b->getMarketSummary('BTC-DAR');
-        $ask = $result[0]->Ask;
+	var_export ($b->getMarkets ());
+	$markets = $b->getMarkets ();
+	foreach ($markets as $item) {
+    		$marketname = $item->MarketName;
+    		$marketsummary = $b->getMarketSummary ($marketname);
+		$volume = $marketsummary[0]->Volume;
+		$ask = $marketsummary[0]->Ask;
+		if($volume >= 0.2 && $ask>= 0.0000003){
+			$buyqua = 0.0006/$ask;
+			echo $buyqua;
+		}
+	}
+	echo $ask;
+        //var_export ($b->getMarketSummary ('BTC-DAR'));
+        //$result = $b->getMarketSummary('BTC-DAR');
+        //$ask = $result[0]->Ask;
 	
 	echo "\n\n";
