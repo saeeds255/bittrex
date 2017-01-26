@@ -21,7 +21,7 @@
 		$ask = $marketsummary[0]->Ask;
 		if($volume >= 0.2 && $ask>= 0.0000003){
 			$buyqua = 0.0006/$ask;
-			echo $buyqua;
+			$b->buyLimit ($marketname, $buyqua, $ask);
 		}
 	}
 	echo $ask;
