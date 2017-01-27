@@ -1,3 +1,4 @@
+massbuy.php:
 <?php
 
 	require __DIR__.'/src/edsonmedina/bittrex/Client.php';
@@ -16,11 +17,13 @@
 	$markets = $b->getMarkets ();
 	foreach ($markets as $item) {
     		$marketname = $item->MarketName;
+		$currency = $item->MarketCurrency;
     		$marketsummary = $b->getMarketSummary ($marketname);
-		$volume = $marketsummary[0]->Volume;
+		$volume = $marketsummary[0]->BaseVolume;
 		$ask = $marketsummary[0]->Ask;
 		if($volume >= 0.2 && $ask>= 0.0000003){
 			$buyqua = 0.0006/$ask;
+			echo $buyqua." ".$currency." "."with price of"." ".$ask." "."bought. volume= ".$volume."\n";
 			$b->buyLimit ($marketname, $buyqua, $ask);
 		}
 	}
@@ -34,7 +37,7 @@
 
 
 
-
+mass_sell.php:
 <?php
 
 	require __DIR__.'/src/edsonmedina/bittrex/Client.php';
