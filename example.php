@@ -60,9 +60,12 @@ mass_sell.php:
                 $currency = $item->MarketCurrency;
                 $marketsummary = $b->getMarketSummary ($marketname);
                 $bid = $marketsummary[0]->Bid;
+		$high = $marketsummary[0]->High;
+		$low = $marketsummary[0]->Low;
+		$hlmin = ($high + $low)/2;
                 $balance = $b->getBalance ($currency);
                 $mybalance = $balance->Available;
-                if($mybalance != 0 && $currency != "BTC"){
+                if($mybalance != 0 && $currency != "BTC" && $bid >= $hlmin){
                         $b->sellLimit ($marketname, $mybalance, $bid);
                         echo $mybalance." ".$currency." "."with price of"." ".$bid." "."sold\n";
                         sleep(1);
