@@ -23,7 +23,7 @@ massbuy.php:
                 $ask = $marketsummary[0]->Ask;
                 $balance = $b->getBalance ($currency);
                 $mybalance = $balance->Available;
-                if($isactive && $mybalance == 0 && $volume >= 1 && $ask>= 0.0000003 && $currency != "BTC"){
+                if($isactive && $mybalance == 0 && $volume >= 1 && $ask>= 0.0000003 && $currency != "BTC" && $marketname != "ETH-ETC" && $marketname != "ETH-ETC"){
                         $buyqua = 0.0006/$ask;
                         echo $buyqua." ".$currency." "."with price of"." ".$ask." "."bought. volume= ".$volume."\n";
                         $b->buyLimit ($marketname, $buyqua, $ask);
@@ -64,7 +64,7 @@ mass_sell.php:
                 $balance = $b->getBalance ($currency);
                 $mybalance = $balance->Available;
 		$btcvalue = $bid * $mybalance;
-                if($isactive && $mybalance != 0 && $currency != "BTC" && $btcvalue >= 0.00065){
+                if($isactive && $mybalance != 0 && $currency != "BTC" && $btcvalue >= 0.00065 && $marketname != "ETH-ETC" && $marketname != "ETH-ETC"){
                         $b->sellLimit ($marketname, $mybalance, $bid);
                         echo $mybalance." ".$currency." "."with price of"." ".$bid." "."sold\n";
                         sleep(1);
