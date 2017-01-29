@@ -40,7 +40,7 @@
                 $balance = $b->getBalance ($currency);
                 $mybalance = $balance->Available;
 		$btcvalue = $bid * $mybalance;
-                if($isactive && $mybalance != 0 && $currency != "BTC" && $btcvalue >= 0.00067 && $btcvalue <= 0.00056 && $marketname != "ETH-ETC" && $marketname != "ETH-ETC"){
+                if($isactive && $mybalance != 0 && $currency != "BTC" && $btcvalue >= 0.00067 && $btcvalue <= 0.00056 && $btcvalue >= 0.00051 && $marketname != "ETH-ETC" && $marketname != "ETH-ETC"){
                         $b->sellLimit ($marketname, $mybalance, $bid);
                         echo $mybalance." ".$currency." "."with price of"." ".$bid." "."sold\n";
                         sleep(1);
