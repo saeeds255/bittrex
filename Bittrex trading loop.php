@@ -18,7 +18,7 @@
                 $ask = $marketsummary[0]->Ask;
                 $balance = $b->getBalance ($currency);
                 $mybalance = $balance->Available;
-                if($isactive && $mybalance == 0 && $volume >= 1.5 && $ask>= 0.0000003 && $currency != "BTC" && $marketname != "ETH-ETC" && $marketname != "ETH-ETC"){
+                if($isactive && $mybalance == 0 && $volume >= 1.5 && $ask>= 0.0000003 && $currency != "BTC" && $marketname != "ETH-ETC" && $marketname != "ETH-DGB"){
                         $buyqua = 0.0006/$ask;
                         echo $buyqua." ".$currency." "."with price of"." ".$ask." "."bought. volume= ".$volume."\n";
                         $b->buyLimit ($marketname, $buyqua, $ask);
@@ -40,10 +40,12 @@
                 $balance = $b->getBalance ($currency);
                 $mybalance = $balance->Available;
 		$btcvalue = $bid * $mybalance;
-                if($isactive && $mybalance != 0 && $currency != "BTC" && $btcvalue >= 0.00067 && $btcvalue <= 0.00056 && $btcvalue >= 0.00051 && $marketname != "ETH-ETC" && $marketname != "ETH-ETC"){
-                        $b->sellLimit ($marketname, $mybalance, $bid);
-                        echo $mybalance." ".$currency." "."with price of"." ".$bid." "."sold\n";
-                        sleep(1);
+                if($isactive && $mybalance != 0 && $btcvalue >= 0.00051 && $currency != "BTC" && $marketname != "ETH-ETC" && $marketname != "ETH-DGB"){
+			if($btcvalue >= 0.00067 || $btcvalue <= 0.00056){
+                        	$b->sellLimit ($marketname, $mybalance, $bid);
+                        	echo $mybalance." ".$currency." "."with price of"." ".$bid." "."sold\n";
+                        	sleep(1);
+			}
                 }
         }
        sleep(300); 
